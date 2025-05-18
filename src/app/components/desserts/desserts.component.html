@@ -1,0 +1,18 @@
+<div>
+  <h2>Dessert Search</h2>
+
+  <input [(ngModel)]="originalName" placeholder="Original name" />
+  <input [(ngModel)]="englishName" placeholder="English name" />
+  <button (click)="search()">Search</button>
+  <button (click)="loadRatings()">Load Expert Ratings</button>
+
+  <div *ngIf="loading">Loading...</div>
+
+  <ul *ngIf="!loading">
+    <li *ngFor="let dessert of desserts">
+      <strong>{{ dessert.originalName }}</strong> /
+      {{ dessert.englishName }}
+      <span *ngIf="dessert.rating">– Rating: {{ dessert.rating }}</span>
+    </li>
+  </ul>
+</div>
