@@ -1,0 +1,51 @@
+
+<div style="border: 4px solid black; padding: 16px; margin: 10px">
+  <!-- start FOR -->
+
+  <h1>ngFor vs for</h1>
+
+  <!-- Klasický ngFor se všemi lokálními proměnnými -->
+  <ul>
+    <li
+      *ngFor="
+        let member of members;
+        let i = index;
+        let first = first;
+        let last = last;
+        let even = even;
+        let odd = odd;
+        trackBy: trackByMemberId
+      "
+    >
+      first: {{ first }} | last: {{ last }} | even {{ even }} | odd {{ odd }} |
+      {{ i + 1 }}. {{ member?.name }} ({{ member?.dateOfBirth }})
+    </li>
+
+    <li *ngIf="members?.length === 0">Nic tu neni</li>
+  </ul>
+
+  <hr />
+
+  <!-- Nová kontrolní syntaxe: @for a @empty -->
+  <ul>
+    @for (
+      member of members;
+      track member.id;
+      let i = $index;
+      let first = $first;
+      let last = $last;
+      let even = $even;
+      let odd = $odd
+    ) {
+      <li>
+        first: {{ first }} | last: {{ last }} | even {{ even }} | odd
+        {{ odd }} | {{ i + 1 }}. {{ member?.name }} ({{ member?.dateOfBirth }})
+      </li>
+    }
+    @empty {
+      <li>Nic tu neni</li>
+    }
+  </ul>
+
+  <!-- end FOR -->
+</div>
